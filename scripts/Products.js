@@ -3,7 +3,6 @@ import { getProducts } from "./database.js"
 document.addEventListener(
     "click",
     (clickEvent) => {
-        console.log(clickEvent)
         const itemClicked = clickEvent.target
         if (itemClicked.id.startsWith("product")) {
             const [, productId] = itemClicked.id.split("--")
