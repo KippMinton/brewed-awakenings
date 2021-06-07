@@ -5,7 +5,6 @@ const products = getProducts()
 const employees = getEmployees()
 const orders = getOrders()
 
-
 // Function whose responsibility is to find the product for an order
 const findProduct = (order, allProducts) => {
     let orderProduct = null
@@ -48,3 +47,23 @@ export const Orders = () => {
     return html
 }
 
+document.addEventListener(
+    "click",
+    (clickEvent) => {
+        const itemClicked = clickEvent.target
+        if (itemClicked.id.startsWith("employee")) {
+            const [, employeeId] = itemClicked.id.split("--")
+            let orderCounter = 0
+            for (const order of orders) {
+                if (order.employeeId === parseInt(employeeId)) {
+                    orderCounter++
+                }
+            }
+            for (const employee of employees) {
+                if (employee.id === parseInt(employeeId)) {
+                    window.alert(`${employee.name} sold ${orderCounter} products.`)
+                }
+            }
+        }
+    }
+)
